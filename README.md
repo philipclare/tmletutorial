@@ -1,7 +1,7 @@
 # TMLE Tutorial
-R code and data for TMLE tutorial published at xx
+R code and data for TMLE tutorial.
 
-This repository contains data and a number of snippets of R code, used in the TMLE tutorial paper published in Statistics in Medicine.
+This repository contains data and a number of snippets of R code, used in the TMLE tutorial currently under review at Statistics in Medicine.
 
 The repository includes a number of files of R-code:
 data.creation.R - Code for creating the longitudinal dataset used in example analyses. Data creation is done using the package 'simcausal'.
