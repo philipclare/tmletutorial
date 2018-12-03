@@ -4,7 +4,7 @@ This repository contains data and a number of snippets of R code, used in the TM
 
 | Description | Markdown | R-code |
 | --- | --- | --- |
-| Creating the longitudinal dataset used in example analyses. Data creation is done using the package 'simcausal' (1). | | |
+| Creating the longitudinal dataset used in example analyses. Data creation is done using the package 'simcausal' (1). | [Data Creation Markdown](Markdown/data-creation.nb.html) | [Data Creation Code](Code/data-creation.R) |
 | Cross-sectional TMLE analysis, both manually and using the package 'tmle' (2). | | |
 | Longitudinal TMLE with a single outcome measurement, both manually and using the package 'ltmle' (3). | | |
 | Longitudinal TMLE with a repeated outcome measurement, both manually and using the package 'ltmle' (3). | | |
