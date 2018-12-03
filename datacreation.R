@@ -66,10 +66,6 @@ D <- suppressWarnings(set.DAG(D, latent.v = c("u_0","u_1","u_2","u_3","u_4")))
 # Create final simulated dataset
 ldata <- simcausal::sim(D,n=1000)
 
-cov(ldata$a_0,ldata$l_1,use="complete.obs")
-cov(ldata$a_1,ldata$l_2,use="complete.obs")
-cov(ldata$a_2,ldata$l_3,use="complete.obs")
-cov(ldata$a_3,ldata$l_4,use="complete.obs")
 # Convert numeric censoring variables to 'censored' variable for ltmle
 ldata$c_0 <- BinaryToCensoring(is.censored=ldata$c_0)
 ldata$c_1 <- BinaryToCensoring(is.censored=ldata$c_1)
