@@ -71,7 +71,7 @@ mgformb <- c(c_0="c_0 ~ ba + bb + bc",
 # TMLE ANALYSIS #
 # Estimation using just GLMs
 # Correctly specified
-rltmle2 <- suppressWarnings(ltmle(data[,-1],
+rltmle2 <- suppressWarnings(ltmle(ldata[,-1],
                                   Anodes=c("a_0","a_1","a_2","a_3","a_4"),
                                   Lnodes=c("l_0","l_1","l_2","l_3","l_4"),
                                   Cnodes=c("c_0","c_1","c_2","c_3","c_4"),
@@ -82,7 +82,7 @@ rltmle2 <- suppressWarnings(ltmle(data[,-1],
                                   Qform=qformb,gform=gformb,
                                   estimate.time=FALSE))
 # Outcome model misspecified
-rltmle2m1 <- suppressWarnings(ltmle(data[,-1],
+rltmle2m1 <- suppressWarnings(ltmle(ldata[,-1],
                                     Anodes=c("a_0","a_1","a_2","a_3","a_4"),
                                     Lnodes=c("l_0","l_1","l_2","l_3","l_4"),
                                     Cnodes=c("c_0","c_1","c_2","c_3","c_4"),
@@ -93,7 +93,7 @@ rltmle2m1 <- suppressWarnings(ltmle(data[,-1],
                                     Qform=mqformb,gform=gformb,
                                     estimate.time=FALSE))
 # Both models misspecified
-rltmle2m2 <- suppressWarnings(ltmle(data[,-1],
+rltmle2m2 <- suppressWarnings(ltmle(ldata[,-1],
                                     Anodes=c("a_0","a_1","a_2","a_3","a_4"),
                                     Lnodes=c("l_0","l_1","l_2","l_3","l_4"),
                                     Cnodes=c("c_0","c_1","c_2","c_3","c_4"),
@@ -105,7 +105,7 @@ rltmle2m2 <- suppressWarnings(ltmle(data[,-1],
                                     estimate.time=FALSE))
 
 # Estimation using SuperLearner
-slltmle2 <- suppressWarnings(ltmle(data[,-1],
+slltmle2 <- suppressWarnings(ltmle(ldata[,-1],
                                    Anodes=c("a_0","a_1","a_2","a_3","a_4"),
                                    Lnodes=c("l_0","l_1","l_2","l_3","l_4"),
                                    Cnodes=c("c_0","c_1","c_2","c_3","c_4"),
@@ -117,19 +117,19 @@ slltmle2 <- suppressWarnings(ltmle(data[,-1],
 
 # NAIVE ANALYSIS #
 # Create cumulative exposure and confounder variables for naive analysis
-data$acum_0 <- data$a_0
-data$acum_1 <- data$acum_0 + data$a_1
-data$acum_2 <- data$acum_1 + data$a_2
-data$acum_3 <- data$acum_2 + data$a_3
-data$acum_4 <- data$acum_3 + data$a_4
-data$lcum_0 <- data$l_0
-data$lcum_1 <- data$lcum_0 + data$l_1
-data$lcum_2 <- data$lcum_1 + data$l_2
-data$lcum_3 <- data$lcum_2 + data$l_3
-data$lcum_4 <- data$lcum_3 + data$l_4
+ldata$acum_0 <- ldata$a_0
+ldata$acum_1 <- ldata$acum_0 + ldata$a_1
+ldata$acum_2 <- ldata$acum_1 + ldata$a_2
+ldata$acum_3 <- ldata$acum_2 + ldata$a_3
+ldata$acum_4 <- ldata$acum_3 + ldata$a_4
+ldata$lcum_0 <- ldata$l_0
+ldata$lcum_1 <- ldata$lcum_0 + ldata$l_1
+ldata$lcum_2 <- ldata$lcum_1 + ldata$l_2
+ldata$lcum_3 <- ldata$lcum_2 + ldata$l_3
+ldata$lcum_4 <- ldata$lcum_3 + ldata$l_4
 
 # Create long-form data for GLM analysis
-longdata <- reshape(data=data,varying=list(c(8,12,16,20,24),c(7,11,15,19,23),c(25:29),c(6,10,14,18,22),c(30:34),c(5,9,13,17,21)),
+longdata <- reshape(data=ldata,varying=list(c(8,12,16,20,24),c(7,11,15,19,23),c(25:29),c(6,10,14,18,22),c(30:34),c(5,9,13,17,21)),
                     v.names=c("y","a","acum","l","lcum","c"),
                     idvar="ID",timevar="obs",direction="long", sep = "_")
 # Correctly specified cumulative exposure model using random intercept model
