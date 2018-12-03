@@ -61,20 +61,20 @@ mgforma <- c(c_0="c_0 ~ ba + bb + bc",
              a_4="a_4 ~ ba + bb + bc + a_0 + a_1 + a_2 + a_3")
 
 # Create data subset with all observations of exposure and confounders, but only final outcome Y4
-ldata <- data[,c(-1,-8,-12,-16,-20)]
+ldata2 <- data[,c(-1,-8,-12,-16,-20)]
 
 # NAIVE ANALYSIS #
 # Correctly specified
-LGLM <- glm(data=data,"y_4 ~ a_0 + a_1 + a_2 + a_3 + a_4 + l_0 + l_1 + l_2 + l_3 + l_4 + ba + bb + bc")
+LGLM <- glm(data=ldata,"y_4 ~ a_0 + a_1 + a_2 + a_3 + a_4 + l_0 + l_1 + l_2 + l_3 + l_4 + ba + bb + bc")
 V1<-vcov(LGLM) # Save variance-covariance matrix to calculate joint standard error
 # Incorrectly specified
-LGLMm <- glm(data=data,"y_4 ~ a_0 + a_1 + a_2 + a_3 + a_4 + ba + bb + bc")
+LGLMm <- glm(data=ldata,"y_4 ~ a_0 + a_1 + a_2 + a_3 + a_4 + ba + bb + bc")
 V2<-vcov(LGLMm) # Save variance-covariance matrix to calculate joint standard error
 
 # TMLE ANALYSIS #
 # Estimation using just GLMs
 # Correctly specified
-rltmle1 <- suppressWarnings(ltmle(ldata,
+rltmle1 <- suppressWarnings(ltmle(ldata2,
                                   Anodes=c("a_0","a_1","a_2","a_3","a_4"),
                                   Lnodes=c("l_0","l_1","l_2","l_3","l_4"),
                                   Cnodes=c("c_0","c_1","c_2","c_3","c_4"),
@@ -86,7 +86,7 @@ rltmle1 <- suppressWarnings(ltmle(ldata,
                                   survivalOutcome=FALSE))
 
 # Outcome model misspecified
-rltmle1m1 <- suppressWarnings(ltmle(ldata,
+rltmle1m1 <- suppressWarnings(ltmle(ldata2,
                                     Anodes=c("a_0","a_1","a_2","a_3","a_4"),
                                     Lnodes=c("l_0","l_1","l_2","l_3","l_4"),
                                     Cnodes=c("c_0","c_1","c_2","c_3","c_4"),
@@ -98,7 +98,7 @@ rltmle1m1 <- suppressWarnings(ltmle(ldata,
                                     survivalOutcome=FALSE))
 
 # Both models misspecified
-rltmle1m2 <- suppressWarnings(ltmle(ldata,
+rltmle1m2 <- suppressWarnings(ltmle(ldata2,
                                     Anodes=c("a_0","a_1","a_2","a_3","a_4"),
                                     Lnodes=c("l_0","l_1","l_2","l_3","l_4"),
                                     Cnodes=c("c_0","c_1","c_2","c_3","c_4"),
@@ -110,7 +110,7 @@ rltmle1m2 <- suppressWarnings(ltmle(ldata,
                                     survivalOutcome=FALSE))
 
 # Estimation via SuperLearner
-slltmle1 <- suppressWarnings(ltmle(ldata,
+slltmle1 <- suppressWarnings(ltmle(ldata2,
                                    Anodes=c("a_0","a_1","a_2","a_3","a_4"),
                                    Lnodes=c("l_0","l_1","l_2","l_3","l_4"),
                                    Cnodes=c("c_0","c_1","c_2","c_3","c_4"),
