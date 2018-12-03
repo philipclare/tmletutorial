@@ -24,7 +24,7 @@ SLlib <- c("SL.glm")
 SLlib2 <- c("SL.glm","SL.glm.interaction","SL.stepAIC","SL.ranger")
 
 # Create subset of data with only baseline variables BA, BB, BC, A0, L0, Y0
-csdata <- data[,c(2,3,4,6,7,8)]
+csdata <- ldata[,c(2,3,4,6,7,8)]
 
 # Manual TMLE
 # Correctly specified
