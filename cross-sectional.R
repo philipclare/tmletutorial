@@ -1,5 +1,9 @@
+################################################
+### Cross-sectional example                   ##
+################################################
+
 ### NOTE ###
-This code requires data created in the R-code 'datacreation.R', also stored on this repository
+# This code requires data created in the R-code 'datacreation.R', also stored on this repository #
 
 cloudstor <- "C:/Users/z3312911/Cloudstor/"
 .libPaths(paste0(cloudstor,"R Library"))
