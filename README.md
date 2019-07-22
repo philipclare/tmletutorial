@@ -1,5 +1,5 @@
 # Targeted Maximum Likelihood Estimation to adjust for time-varying confounding – a tutorial paper
-## R Analysis Code
+## R Markdown and Analysis Code
 
 This repository contains data and a number of snippets of R code, used in the TMLE tutorial by Clare, Dobbins, Bruno and Mattick.
 
